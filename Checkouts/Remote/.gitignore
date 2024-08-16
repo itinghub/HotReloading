@@ -1,0 +1,7 @@
+*/build/*
+*Library/*
+*RemoteLib/*
+*xcuserdata*
+*xccheckout*
+.swiftpm
+.build

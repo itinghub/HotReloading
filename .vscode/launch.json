@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:HotReloading}",
+            "name": "Debug injectiond",
+            "program": "${workspaceFolder:HotReloading}/.build/debug/injectiond",
+            "preLaunchTask": "swift: Build Debug injectiond"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:HotReloading}",
+            "name": "Release injectiond",
+            "program": "${workspaceFolder:HotReloading}/.build/release/injectiond",
+            "preLaunchTask": "swift: Build Release injectiond"
+        }
+    ]
+}
