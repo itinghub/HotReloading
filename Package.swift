@@ -30,10 +30,10 @@ let package = Package(
     dependencies: [
         .package(path: "Checkouts/SwiftTrace"),
         .package(path: "Checkouts/SwiftRegex5"),
-        .package(path: "Checkouts/XprobePlugin"),
-        .package(path: "Checkouts/Remote"),
+//        .package(path: "Checkouts/XprobePlugin"),
+//        .package(path: "Checkouts/Remote"),
         //        .package(path: "Checkouts/ProfileSwiftUI"),
-        .package(path: "Checkouts/HotSwiftUI"),
+//        .package(path: "Checkouts/HotSwiftUI"),
         //        .package(url: "https://github.com/johnno1962/DLKit",
         //                 .upToNextMinor(from: "1.2.1")),
         //        .package(url: "https://github.com/johnno1962/InjectionScratch",
@@ -42,15 +42,15 @@ let package = Package(
     targets: [
         .target(name: "HotReloading", dependencies: ["HotReloadingGuts",
                                                      .product(name: "SwiftTraceD", package: "SwiftTrace"),
-                                                     .product(name: "Xprobe", package: "XprobePlugin"),
+//                                                     .product(name: "Xprobe", package: "XprobePlugin"),
                                                      .product(name: "SwiftRegex", package: "SwiftRegex5")]),
         .target(name: "HotReloadingGuts",
                 cSettings: [.define("DEVELOPER_HOST", to: "\"\(hostname)\"")]),
         .target(name: "injectiondGuts"),
         .target(name: "injectiond", dependencies: ["HotReloadingGuts", "injectiondGuts",
                                                    .product(name: "SwiftRegex", package: "SwiftRegex5"),
-                                                   .product(name: "XprobeUI", package: "XprobePlugin"),
-                                                   .product(name: "RemoteUI", package: "Remote")],
+//                                                   .product(name: "XprobeUI", package: "XprobePlugin")
+        ],
                 swiftSettings: [.define("INJECTION_III_APP")])],
     cxxLanguageStandard: .cxx11
 )

@@ -17,7 +17,7 @@ import Foundation
 #if canImport(InjectionScratch)
 import InjectionScratch
 #endif
-import Xprobe
+//import Xprobe
 //import ProfileSwiftUI
 
 public struct HotReloading {
@@ -387,20 +387,21 @@ public class InjectionClient: SimpleSocket, InjectionReader {
                 }
             #if SWIFT_PACKAGE
             case .xprobe:
-                Xprobe.connect(to: nil, retainObjects:true)
-                Xprobe.search("")
+//                Xprobe.connect(to: nil, retainObjects:true)
+//                Xprobe.search("")
+                break
             case .eval:
-                let parts = changed.components(separatedBy:"^")
-                guard let pathID = Int(parts[0]) else { break }
-                self.writeCommand(InjectionResponse.pause.rawValue, with:"5")
-                if let object = (xprobePaths[pathID] as? XprobePath)?
-                    .object() as? NSObject, object.responds(to: Selector(("swiftEvalWithCode:"))),
-                   let code = (parts[3] as NSString).removingPercentEncoding,
-                   object.swiftEval(code: code) {
-                } else {
-                    self.log("Xprobe: Eval only works on NSObject subclasses where the source file has the same name as the class and is in your project.")
-                }
-                Xprobe.write("$('BUSY\(pathID)').hidden = true; ")
+//                let parts = changed.components(separatedBy:"^")
+//                guard let pathID = Int(parts[0]) else { break }
+//                self.writeCommand(InjectionResponse.pause.rawValue, with:"5")
+//                if let object = (xprobePaths[pathID] as? XprobePath)?
+//                    .object() as? NSObject, object.responds(to: Selector(("swiftEvalWithCode:"))),
+//                   let code = (parts[3] as NSString).removingPercentEncoding,
+//                   object.swiftEval(code: code) {
+//                } else {
+//                    self.log("Xprobe: Eval only works on NSObject subclasses where the source file has the same name as the class and is in your project.")
+//                }
+//                Xprobe.write("$('BUSY\(pathID)').hidden = true; ")
             #endif
             default:
                 self.log("⚠️ Unimplemented command: #\(command.rawValue). " +

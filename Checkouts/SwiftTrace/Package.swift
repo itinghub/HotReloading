@@ -13,15 +13,11 @@ let package = Package(
     products: [
         // SwiftTrace needs to be .dynamic for
         // the trampolines to work on Intel.
-        .library(name: "SwiftTrace", type: .dynamic, targets: ["SwiftTrace"]),
-        .library(name: "SwiftTraceGuts", type: .dynamic, targets: ["SwiftTraceGuts"]),
         .library(name: "SwiftTraceD", type: .dynamic, targets: ["SwiftTraceD"]),
         .library(name: "SwiftTraceGutsD", type: .dynamic, targets: ["SwiftTraceGutsD"]),
     ],
     dependencies: [],
     targets: [
-        .target(name: "SwiftTrace", dependencies: ["SwiftTraceGuts"], path: "SwiftTrace/"),
-        .target(name: "SwiftTraceGuts", dependencies: [], path: "SwiftTraceGuts/"),
         .target(name: "SwiftTraceD", dependencies: ["SwiftTraceGutsD"],
                 path: "SwiftTraceD/", swiftSettings: [.define("DEBUG_ONLY")]),
         .target(name: "SwiftTraceGutsD", dependencies: [],
