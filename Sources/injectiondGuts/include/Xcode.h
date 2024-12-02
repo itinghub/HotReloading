@@ -4,6 +4,7 @@
 
 #import <AppKit/AppKit.h>
 #import <ScriptingBridge/ScriptingBridge.h>
+#define DEBUG 1
 
 
 @class XcodeApplication, XcodeDocument, XcodeWindow, XcodeFileDocument, XcodeTextDocument, XcodeSourceDocument, XcodeWorkspaceDocument, XcodeSchemeActionResult, XcodeSchemeActionIssue, XcodeBuildError, XcodeBuildWarning, XcodeAnalyzerIssue, XcodeTestFailure, XcodeScheme, XcodeRunDestination, XcodeDevice, XcodeBuildConfiguration, XcodeProject, XcodeBuildSetting, XcodeResolvedBuildSetting, XcodeTarget;

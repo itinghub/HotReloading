@@ -114,12 +114,12 @@ typedef union {
     if (clientSocket < 0)
         return nil;
 
-    if (connect(clientSocket, &serverAddr.addr, serverAddr.sa_len) < 0) {
+//    if (connect(clientSocket, &serverAddr.addr, serverAddr.sa_len) < 0) {
         [self error:@"Could not connect: %s"];
         return nil;
-    }
+//    }
 
-    return [[self alloc] initSocket:clientSocket];
+//    return [[self alloc] initSocket:clientSocket];
 }
 
 + (int)newSocket:(sa_family_t)addressFamily {

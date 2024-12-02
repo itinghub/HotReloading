@@ -18,7 +18,7 @@ import Foundation
 import InjectionScratch
 #endif
 import Xprobe
-import ProfileSwiftUI
+//import ProfileSwiftUI
 
 public struct HotReloading {
     public static var stack: Void {
@@ -323,7 +323,8 @@ public class InjectionClient: SimpleSocket, InjectionReader {
                          with: builder.buildCacheFile)
         case .profileUI:
             DispatchQueue.main.async {
-                ProfileSwiftUI.profile()
+                print("not_support_profileUI")
+//                ProfileSwiftUI.profile()
             }
         default:
             processOnMainThread(command: command, builder: builder)

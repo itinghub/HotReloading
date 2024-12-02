@@ -52,6 +52,7 @@ extern "C" {
 }
 
 + (void)load {
+    NSLog(@"HotReloading load");
     if ([NSTemporaryDirectory() containsString:@"/UserData/Previews/"] ||
         strstr(getenv("PACKAGE_RESOURCE_BUNDLE_PATH")?:"", "/Previews/") ||
         getenv("XCTestBundlePath") || getenv("XCTestSessionIdentifier") ||

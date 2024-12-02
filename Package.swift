@@ -20,7 +20,7 @@ var hostname = Host.current().name ?? "localhost"
 
 let package = Package(
     name: "HotReloading",
-    platforms: [.macOS("10.12"), .iOS("10.0"), .tvOS("10.0")],
+    platforms: [.macOS("10.12"), .iOS("13.0"), .tvOS("10.0")],
     products: [
         .library(name: "HotReloading", targets: ["HotReloading"]),
         // .library(name: "HotReloadingGuts", targets: ["HotReloadingGuts"]),
@@ -32,7 +32,8 @@ let package = Package(
         .package(path: "Checkouts/SwiftRegex5"),
         .package(path: "Checkouts/XprobePlugin"),
         .package(path: "Checkouts/Remote"),
-        .package(path: "Checkouts/ProfileSwiftUI"),
+        //        .package(path: "Checkouts/ProfileSwiftUI"),
+        .package(path: "Checkouts/HotSwiftUI"),
         //        .package(url: "https://github.com/johnno1962/DLKit",
         //                 .upToNextMinor(from: "1.2.1")),
         //        .package(url: "https://github.com/johnno1962/InjectionScratch",
@@ -42,8 +43,7 @@ let package = Package(
         .target(name: "HotReloading", dependencies: ["HotReloadingGuts",
                                                      .product(name: "SwiftTraceD", package: "SwiftTrace"),
                                                      .product(name: "Xprobe", package: "XprobePlugin"),
-                                                     .product(name: "SwiftRegex", package: "SwiftRegex5"),
-                                                     "ProfileSwiftUI"]),
+                                                     .product(name: "SwiftRegex", package: "SwiftRegex5")]),
         .target(name: "HotReloadingGuts",
                 cSettings: [.define("DEVELOPER_HOST", to: "\"\(hostname)\"")]),
         .target(name: "injectiondGuts"),
