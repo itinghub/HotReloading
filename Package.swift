@@ -16,24 +16,34 @@ import Foundation
 // Then drag the clone onto your project to have it
 // take precedence over the configured version.
 var hostname = Host.current().name ?? "localhost"
-// hostname = "192.168.0.243" // for example
 
 let package = Package(
     name: "HotReloading",
     platforms: [.macOS("10.12"), .iOS("13.0"), .tvOS("10.0")],
     products: [
+        // HotReloading 产品
         .library(name: "HotReloading", targets: ["HotReloading"]),
     ],
     dependencies: [
-        .package(name:"SwiftTrace",  path: "./SubPackages/SwiftTrace"),
-        .package(name:"SwiftRegex5", path: "./SubPackages/SwiftRegex5"),
+        .package(url: "https://github.com/johnno1962/SwiftTrace.git", revision: "589f371"),
+        .package(url: "https://github.com/johnno1962/SwiftRegex5.git",revision: "9bf1537")
     ],
     targets: [
-        .target(name: "HotReloading", dependencies: ["HotReloadingGuts",
-                                                     .product(name: "SwiftTraceD", package: "SwiftTrace"),
-                                                     .product(name: "SwiftRegex", package: "SwiftRegex5")]),
-        .target(name: "HotReloadingGuts",
-                cSettings: [.define("DEVELOPER_HOST", to: "\"\(hostname)\"")])
+        // HotReloading 目标
+        .target(
+            name: "HotReloading",
+            dependencies: [
+                "HotReloadingGuts",
+                .product(name: "SwiftTraceD", package: "SwiftTrace"),
+                .product(name: "SwiftRegex", package: "SwiftRegex5"),
+            ]
+        ),
+        .target(
+            name: "HotReloadingGuts",
+            cSettings: [
+                .define("DEVELOPER_HOST", to: "\"\(hostname)\"")
+            ]
+        )
     ],
     cxxLanguageStandard: .cxx11
 )
