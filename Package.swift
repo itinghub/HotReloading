@@ -23,34 +23,17 @@ let package = Package(
     platforms: [.macOS("10.12"), .iOS("13.0"), .tvOS("10.0")],
     products: [
         .library(name: "HotReloading", targets: ["HotReloading"]),
-        // .library(name: "HotReloadingGuts", targets: ["HotReloadingGuts"]),
-        // .library(name: "injectiondGuts", targets: ["injectiondGuts"]),
-        // .executable(name: "injectiond", targets: ["injectiond"]),
     ],
     dependencies: [
-        .package(name:"SwiftTrace",  path: "Checkouts/SwiftTrace"),
-        .package(name:"SwiftRegex5", path: "Checkouts/SwiftRegex5"),
-//        .package(path: "Checkouts/XprobePlugin"),
-//        .package(path: "Checkouts/Remote"),
-        //        .package(path: "Checkouts/ProfileSwiftUI"),
-//        .package(path: "Checkouts/HotSwiftUI"),
-        //        .package(url: "https://github.com/johnno1962/DLKit",
-        //                 .upToNextMinor(from: "1.2.1")),
-        //        .package(url: "https://github.com/johnno1962/InjectionScratch",
-        //                 .upToNextMinor(from: "1.2.12")),
+        .package(name:"SwiftTrace",  path: "./SubPackages/SwiftTrace"),
+        .package(name:"SwiftRegex5", path: "./SubPackages/SwiftRegex5"),
     ],
     targets: [
         .target(name: "HotReloading", dependencies: ["HotReloadingGuts",
                                                      .product(name: "SwiftTraceD", package: "SwiftTrace"),
-//                                                     .product(name: "Xprobe", package: "XprobePlugin"),
                                                      .product(name: "SwiftRegex", package: "SwiftRegex5")]),
         .target(name: "HotReloadingGuts",
-                cSettings: [.define("DEVELOPER_HOST", to: "\"\(hostname)\"")]),
-        .target(name: "injectiondGuts"),
-        .target(name: "injectiond", dependencies: ["HotReloadingGuts", "injectiondGuts",
-                                                   .product(name: "SwiftRegex", package: "SwiftRegex5"),
-//                                                   .product(name: "XprobeUI", package: "XprobePlugin")
-        ],
-                swiftSettings: [.define("INJECTION_III_APP")])],
+                cSettings: [.define("DEVELOPER_HOST", to: "\"\(hostname)\"")])
+    ],
     cxxLanguageStandard: .cxx11
 )
