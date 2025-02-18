@@ -28,8 +28,8 @@ let package = Package(
         // .executable(name: "injectiond", targets: ["injectiond"]),
     ],
     dependencies: [
-        .package(path: "Checkouts/SwiftTrace"),
-        .package(path: "Checkouts/SwiftRegex5"),
+        .package(name:"SwiftTrace",  path: "Checkouts/SwiftTrace"),
+        .package(name:"SwiftRegex5", path: "Checkouts/SwiftRegex5"),
 //        .package(path: "Checkouts/XprobePlugin"),
 //        .package(path: "Checkouts/Remote"),
         //        .package(path: "Checkouts/ProfileSwiftUI"),
