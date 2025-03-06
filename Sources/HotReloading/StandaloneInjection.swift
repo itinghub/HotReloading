@@ -81,8 +81,12 @@ class StandaloneInjection: InjectionClient {
                 dirs.append(library)
             }
         }
-
+        
         var lastInjected = [String: TimeInterval]()
+        var noInjectFile:String?
+        if let s = getenv("NO_INJECT_FILE") {
+            noInjectFile = String(cString: s)
+        }
 
         if getenv(SwiftInjection.INJECTION_REPLAY) != nil {
             injectionQueue.sync {
@@ -127,7 +131,12 @@ class StandaloneInjection: InjectionClient {
                     }
                     #endif
                 } else {
-                    SwiftInjection.inject(classNameOrFile: changed)
+                    if let noInjectFile,
+                        FileManager.default.fileExists(atPath: noInjectFile) {
+                        self.log("⚠️ inject disabled by \(noInjectFile)")
+                    } else {
+                        SwiftInjection.inject(classNameOrFile: changed)
+                    }
                 }
                 lastInjected[changed] = Date.timeIntervalSinceReferenceDate
             }
